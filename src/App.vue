@@ -17,6 +17,14 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import { RouterLink, RouterView } from 'vue-router'
 import SocketIoService from "./services/socketio.service";
 
+import { storeToRefs } from 'pinia'
+import{ useDeckStore } from "./stores/deck";
+
+
+const store = useDeckStore()
+const { getDeck } = store
+
+
 const sock = ref('')
 const userId = ref('')
 
@@ -26,6 +34,8 @@ const sendMsg = () => {
 
 onMounted(() => {
   SocketIoService.setupSocketConnection()
+  SocketIoService.getCards()
+  // getDeck()
 })
 
 onBeforeUnmount(() => {

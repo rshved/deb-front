@@ -18,6 +18,12 @@ class SocketIoService {
     })
   }
 
+  getCards() {
+    this.socket.on('cards', cards => {
+      console.log(cards)
+    })
+  }
+
   disconnect() {
     if (this.socket) {
       this.socket.disconnect()
