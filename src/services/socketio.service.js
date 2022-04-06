@@ -19,8 +19,9 @@ class SocketIoService {
   }
 
   getCards() {
-    this.socket.on('cards', cards => {
-      console.log(cards)
+    this.socket.emit('cards')
+    this.socket.on('piles', pile => {
+      console.log(pile)
     })
   }
 
