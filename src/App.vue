@@ -3,9 +3,6 @@
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <input v-model="sock" type="text" @keydown.enter="sendMsg"/>
-        <input v-model="userId" type="text" @keydown.enter="sendMsg" />
-        <button @click="SocketIoService.getCards">get cards</button>
       </nav>
     </div>
   </header>
@@ -14,24 +11,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+
 import { RouterLink, RouterView } from 'vue-router'
-import SocketIoService from "./services/socketio.service";
 
-const sock = ref('')
-const userId = ref('')
-
-const sendMsg = () => {
-  SocketIoService.sendMessage(sock.value, userId.value)
-}
-
-onMounted(() => {
-  SocketIoService.setupSocketConnection()
-})
-
-onBeforeUnmount(() => {
-  SocketIoService.disconnect()
-})
 </script>
 
 <style>
